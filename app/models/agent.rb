@@ -58,4 +58,13 @@ class Agent < ApplicationRecord
   def add_organisation(organisation)
     organisations << organisation if organisation_ids.exclude?(organisation.id)
   end
+
+  def to_detailed
+    {
+      id: id,
+      first_name: first_name,
+      last_name: last_name,
+      email: email
+    }
+  end
 end

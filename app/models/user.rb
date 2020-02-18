@@ -114,6 +114,17 @@ class User < ApplicationRecord
     end
   end
 
+  def to_detailed
+    {
+      id: id,
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      birth_date: birth_date,
+      parent: parent&.to_detailed,
+    }
+  end
+
   protected
 
   def password_required?

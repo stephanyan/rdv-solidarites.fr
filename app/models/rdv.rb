@@ -104,7 +104,20 @@ class Rdv < ApplicationRecord
     explicit_status = destroyed? ? 'deleted' : status
     {
       id: id,
-      status: explicit_status
+      status: explicit_status,
+      location: location,
+      users: users&.map(&:to_detailed),
+      agents: agents&.map(&:to_detailed),
+      organisation: {
+        id: organisation.id,
+        name: organisation.name,
+      },
+      motif: {
+        id: motif.id,
+        name: motif.name,
+      },
+      starts_at: starts_at.to_formatted_s(:iso8601),
+      duration_in_min: duration_in_min,
     }
   end
 
