@@ -67,7 +67,7 @@ class Rdv < ApplicationRecord
   end
 
   def send_web_hook
-    WebHookJob.perform_later(self.to_detailed_rdv)
+    WebHookJob.perform_later(to_detailed_rdv)
   end
 
   def update_name
