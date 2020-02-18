@@ -24,6 +24,7 @@ class Rdv < ApplicationRecord
   before_save :update_name
   after_save :associate_users_with_organisation
   after_save :send_web_hook
+  after_destroy :send_web_hook
 
   def agenda_path_for_agent(agent)
     agent_for_agenda = agents.include?(agent) ? agent : agents.first
@@ -100,8 +101,10 @@ class Rdv < ApplicationRecord
   end
 
   def to_detailed_rdv
+    explicit_status = destroyed? ? 'deleted' : status
     {
-      status: status
+      id: id,
+      status: explicit_status
     }
   end
 
