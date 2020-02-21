@@ -116,7 +116,7 @@ class Rdv < ApplicationRecord
         id: motif.id,
         name: motif.name,
       },
-      starts_at: starts_at.to_formatted_s(:iso8601),
+      starts_at: starts_at,
       duration_in_min: duration_in_min,
     }
   end
