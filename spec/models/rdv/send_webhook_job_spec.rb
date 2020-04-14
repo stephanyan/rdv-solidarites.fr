@@ -2,7 +2,7 @@ describe Rdv, type: :model do
   include ActiveJob::TestHelper
 
   before(:each) do
-    create(:webhook)
+    create(:webhook_endpoint)
   end
 
   after(:each) do
@@ -14,7 +14,7 @@ describe Rdv, type: :model do
 
     describe 'default publication' do
       it 'publishes the default status' do
-        expect(WebhookJob).to receive(:perform_later).with(hash_including('status' => 'unknown'), instance_of(Webhook))
+        expect(WebhookJob).to receive(:perform_later).with(hash_including('status' => 'unknown'), instance_of(WebhookEndpoint))
         rdv.reload
       end
     end
@@ -23,13 +23,13 @@ describe Rdv, type: :model do
       before { rdv.reload }
 
       it 'publishes the new status' do
-        expect(WebhookJob).to receive(:perform_later).with(hash_including('status' => 'excused'), instance_of(Webhook))
+        expect(WebhookJob).to receive(:perform_later).with(hash_including('status' => 'excused'), instance_of(WebhookEndpoint))
         rdv.status = :excused
         rdv.save
       end
 
       it 'publishes the deleted status' do
-        expect(WebhookJob).to receive(:perform_later).with(hash_including('status' => 'deleted'), instance_of(Webhook))
+        expect(WebhookJob).to receive(:perform_later).with(hash_including('status' => 'deleted'), instance_of(WebhookEndpoint))
 
         rdv.destroy
       end
