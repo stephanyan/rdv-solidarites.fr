@@ -1,5 +1,14 @@
 .text-center.w-75.m-auto
-  h4.text-dark-50.text-center.mt-0.font-weight-bold Se connecter
+  h4.text-dark-50.text-center.mt-0.font-weight-bold
+    | Se connecter
+
+.text-center.mb-3
+  = link_to "/auth/france_connect", class: "france-connect-link" do
+    = render('devise/shared/france_connect.svg')
+
+hr
+.text-center.w-75.m-auto
+  h4.text-dark-50.text-center.mt-0.font-weight-bold OU
   p.text-muted.mb-4 Entrez votre email et votre mot de passe.
 
 = render "common/session_form", resource: resource, resource_name: resource_name

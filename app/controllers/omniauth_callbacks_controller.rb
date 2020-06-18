@@ -1,4 +1,13 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  def france_connect
+    upsert_service = UpsertUserForFranceConnectService
+      .perform_with(request.env["omniauth.auth"]["info"])
+
+    flash[:success] = upsert_service.new_user? ? "Votre compte a été créé" : "Vous êtes connecté·e"
+    bypass_sign_in upsert_service.user, scope: :user
+    redirect_to root_path
+  end
+
   def github
     email = request.env["omniauth.auth"]["info"]["email"]
     super_admin = SuperAdmin.find_by(email: email)
