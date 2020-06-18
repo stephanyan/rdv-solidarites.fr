@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  ## OAUTH ##
+
+  devise_for :super_admins # necessary for helpers like super_admin_signed_in?
+  devise_scope :super_admin do
+    get 'auth/github/callback' => "omniauth_callbacks#github"
+  end
+
   ## ADMIN ##
-  devise_for :super_admins, controllers: { omniauth_callbacks: 'super_admins/omniauth_callbacks' }
 
   delete 'admin/sign_out' => 'super_admins/sessions#destroy'
 
