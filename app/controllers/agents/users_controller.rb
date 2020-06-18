@@ -116,7 +116,8 @@ class Agents::UsersController < AgentAuthController
 
   def prepare_create
     @user = User.new(user_params)
-    @user.invited_by = current_agent
+    @user.created_through = "agent_creation"
+    @user.invited_by = current_agent if @user.invite_on_create?
     authorize(@user.responsible) if @user.responsible.present?
     @organisation = current_organisation
   end
