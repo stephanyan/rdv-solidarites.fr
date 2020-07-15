@@ -155,4 +155,14 @@ describe Rdv, type: :model do
       expect(rdv.address_complete_without_personnal_details).to eq("À domicile")
     end
   end
+
+  describe "#notes" do
+    it "works" do
+      user = create(:user)
+      organisation = create(:organisation)
+      note = create(:user_diary, user: user, organisation: organisation, note: "blablabla")
+      rdv = create(:rdv, users: [user], organisation: organisation)
+      expect(rdv.notes).to eq([note])
+    end
+  end
 end

@@ -54,7 +54,7 @@
       .card-header Notes du RDV
       .card-body
         p.card-text
-          | zone de saisie
+          = 
 
   .col-md-6.mb-3
 
@@ -62,8 +62,16 @@
       .card
         .card-header = user.full_name
         .card-body
-          | des infos à propos de l'usager
-
+          p.card-text
+            i.fa.fa-fw.fa-phone>
+            = user.phone_number
+          p.card-text
+            i.fa.fa-fw.fa-envelope>
+            = user.email
+          h3 Notes
+          | bla
+          | bla
+          | bla
 
     .card
       .card-header
