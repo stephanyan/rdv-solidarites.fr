@@ -109,7 +109,7 @@
     .card
       .card-header Notes
       .card-body
-        = simple_form_for(UserDiary.new(user: @user, organisation: current_organisation, agent: @agent), url: organisation_user_diaries_path(current_organisation, @user)) do |f|
+        = simple_form_for(UserDiary.new(user: @user, organisation: current_organisation, agent: current_agent), url: organisation_user_diaries_path(current_organisation, @user)) do |f|
           = f.input :text, label: false
           = f.button :submit, "Enregistrer"
         hr

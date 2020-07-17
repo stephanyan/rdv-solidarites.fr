@@ -53,9 +53,10 @@
     .card
       .card-header Notes du RDV
       .card-body
-        textarea.form-control.optionnal
-        br
-        button.btn.btn-outline-primary Enregistrer
+        = simple_form_for(UserDiary.new, url: organisation_user_diaries_path(current_organisation, @rdv.users.first)) do |f|
+          = f.input_field :user_ids, value: @rdv.users.map(&:id)[1..], as: :hidden
+          = f.input :text, label: false
+          = f.button :submit, "Enregistrer"
         hr
         - @rdv.notes.each do |note|
           p.card-text = note.text
