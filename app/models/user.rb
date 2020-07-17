@@ -161,7 +161,7 @@ class User < ApplicationRecord
   end
 
   def notes_for(organisation)
-    UserDiary.where(organisation: organisation, user: self)
+    UserDiary.where(organisation: organisation, user: self).order("created_at desc")
   end
 
   protected

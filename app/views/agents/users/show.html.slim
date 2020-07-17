@@ -109,9 +109,9 @@
     .card
       .card-header Notes
       .card-body
-        textarea.form-control.optionnal
-        br
-        button.btn.btn-outline-primary Enregistrer
+        = simple_form_for(UserDiary.new(user: @user, organisation: current_organisation, agent: @agent), url: organisation_user_diaries_path(current_organisation, @user)) do |f|
+          = f.input :text, label: false
+          = f.button :submit, "Enregistrer"
         hr
         - @user.notes_for(current_organisation).each do |note|
           p.card-text = note.text

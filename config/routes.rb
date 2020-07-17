@@ -127,6 +127,7 @@ Rails.application.routes.draw do
           scope module: :users do
             resources :rdvs, only: :index
           end
+          resources :user_diaries, as: :diaries
         end
 
         resources :rdvs, except: [:index, :new] do
