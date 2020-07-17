@@ -60,7 +60,7 @@
         - @rdv.notes.each do |note|
           p.card-text = note.text
           i.far.fa-calendar>
-          = " le #{l(note.created_at.to_date)} par <b>#{note.agent.full_name_and_service}</b>".html_safe
+          = " le #{l(note.created_at.to_date)} par #{note.agent.full_name_and_service}"
           hr
 
   .col-md-6.mb-3
