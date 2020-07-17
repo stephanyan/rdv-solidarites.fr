@@ -53,8 +53,15 @@
     .card
       .card-header Notes du RDV
       .card-body
-        p.card-text
-          = 
+        textarea.form-control.optionnal
+        br
+        button.btn.btn-outline-primary Enregistrer
+        hr
+        - @rdv.notes.each do |note|
+          p.card-text = note.text
+          i.far.fa-calendar>
+          = " le #{l(note.created_at.to_date)} par <b>#{note.agent.full_name_and_service}</b>".html_safe
+          hr
 
   .col-md-6.mb-3
 

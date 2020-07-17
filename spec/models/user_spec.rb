@@ -231,4 +231,13 @@ describe User, type: :model do
       expect(user.profile_for(organisation)).to eq(profile)
     end
   end
+
+  describe "#notes_for" do
+    it "return notes for user and organisation" do
+      organisation = create(:organisation)
+      user = create(:user, organisations: [organisation])
+      note = create(:user_diary, user: user, organisation: organisation, text: "blablabla")
+      expect(user.notes_for(organisation)).to eq([note])
+    end
+  end
 end

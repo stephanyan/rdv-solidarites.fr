@@ -160,6 +160,10 @@ class User < ApplicationRecord
     "user_#{id}@deleted.rdv-solidarites.fr"
   end
 
+  def notes_for(organisation)
+    UserDiary.where(organisation: organisation, user: self)
+  end
+
   protected
 
   def password_required?

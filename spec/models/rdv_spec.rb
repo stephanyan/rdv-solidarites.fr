@@ -160,7 +160,7 @@ describe Rdv, type: :model do
     it "works" do
       user = create(:user)
       organisation = create(:organisation)
-      note = create(:user_diary, user: user, organisation: organisation, note: "blablabla")
+      note = create(:user_diary, user: user, organisation: organisation, text: "blablabla")
       rdv = create(:rdv, users: [user], organisation: organisation)
       expect(rdv.notes).to eq([note])
     end
