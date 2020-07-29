@@ -50,7 +50,6 @@ describe "Agent can create a Rdv with wizard" do
     click_button('Créer usager')
     sleep(1) # wait for modal to hide completely
 
-    fill_in :rdv_notes, with: "RDV très spécial"
     click_button('Continuer')
 
     # Step 3
