@@ -43,6 +43,9 @@
   - elsif user.relative?
     = date_input(f, :birth_date)
 
+    = f.simple_fields_for :user_profiles, user_profile  do |n|
+      = n.input :organisation_id, as: :hidden
+
   .text-right
     - if from_modal?
       = link_to "Annuler", "#", class: "btn btn-link", data: { dismiss: 'modal' }
