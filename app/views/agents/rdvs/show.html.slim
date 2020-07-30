@@ -50,7 +50,7 @@
           .col.text-right
             = link_to "Modifier", edit_organisation_rdv_path(@rdv.organisation, @rdv), class: "btn btn-outline-primary", data: { rightbar: true }
 
-    .card
+    .card#notes
       .card-header Notes du RDV
       .card-body
         = simple_form_for(UserDiary.new, url: organisation_user_diaries_path(current_organisation, @rdv.users.first)) do |f|

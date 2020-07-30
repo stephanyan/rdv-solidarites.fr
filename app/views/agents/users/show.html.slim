@@ -106,7 +106,7 @@
             = link_to "Ajouter un proche", new_organisation_user_path(current_organisation, responsible_id: @user.id), class: "btn btn-outline-primary"
 
 
-    .card
+    .card#notes
       .card-header Notes
       .card-body
         = simple_form_for(UserDiary.new(user: @user, organisation: current_organisation, agent: current_agent), url: organisation_user_diaries_path(current_organisation, @user)) do |f|
