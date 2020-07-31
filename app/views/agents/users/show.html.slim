@@ -113,10 +113,15 @@
           = f.input :text, label: false
           = f.button :submit, "Enregistrer"
         hr
-        - @user.notes_for(current_organisation).each do |note|
+        - @user.notes_for(current_organisation).limit(5).each do |note|
           p.card-text = note.text
           i.far.fa-calendar>
-          = " le #{l(note.created_at.to_date)} par <b>#{note.agent.full_name_and_service}</b>".html_safe
+          = " le #{l(note.created_at.to_date)} par #{note.agent.full_name_and_service}"
           hr
+        - if @user.notes_for(current_organisation).count > 5
+          p.card-text.text-center = link_to("Notes plus anciennes", organisation_user_diaries_path(current_organisation, @user, anchor: @user.notes_for(current_organisation)[5].id))
+
+
+
 
 

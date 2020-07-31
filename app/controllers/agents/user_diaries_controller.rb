@@ -1,4 +1,11 @@
 class Agents::UserDiariesController < AgentAuthController
+  def index
+    @user = policy_scope(User).find(params[:user_id])
+    authorize(@user)
+    @notes = @user.notes_for(current_organisation)
+    @back_path = request.headers["REFERER"]
+  end
+
   def create
     user = User.find(params[:user_id])
     authorize(user)

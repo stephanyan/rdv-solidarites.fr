@@ -58,11 +58,13 @@
           = f.input :text, label: false
           = f.button :submit, "Enregistrer"
         hr
-        - @rdv.notes.each do |note|
+        - @rdv.notes.limit(5).each do |note|
           p.card-text = note.text
           i.far.fa-calendar>
           = " le #{l(note.created_at.to_date)} par #{note.agent.full_name_and_service}"
           hr
+        - if @rdv.notes.count > 5
+          p.card-text.text-center = link_to("Notes plus anciennes", organisation_user_diaries_path(current_organisation, @rdv.users.first, anchor: @rdv.notes[5].id))
 
   .col-md-6.mb-3
 

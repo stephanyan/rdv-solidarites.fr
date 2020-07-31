@@ -28,4 +28,20 @@ describe Agents::UserDiariesController, type: :controller do
       expect(response).to redirect_to(organisation_rdv_path(organisation, rdv, anchor: "notes"))
     end
   end
+
+  describe "#index" do
+    it "list user diaries for current organisation" do
+      organisation = create(:organisation)
+      agent = create(:agent, organisations: [organisation])
+      user = create(:user, organisations: [organisation])
+      note = create(:user_diary, organisation: organisation, user: user, agent: agent)
+      sign_in agent
+
+      get :index, params: { organisation_id: organisation.id, user_id: user.id }
+
+      expect(response).to be_successful
+      expect(assigns(:user)).to eq(user)
+      expect(assigns(:notes)).to eq([note])
+    end
+  end
 end
